@@ -1,0 +1,50 @@
+{
+  "resources": [
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":2,},
+    {"id":{"name":"scrMagicCollisionsToolsRect","path":"scripts/scrMagicCollisionsToolsRect/scrMagicCollisionsToolsRect.yy",},"order":2,},
+    {"id":{"name":"scrMagicCollisionsToolsMove","path":"scripts/scrMagicCollisionsToolsMove/scrMagicCollisionsToolsMove.yy",},"order":1,},
+    {"id":{"name":"room_test","path":"rooms/room_test/room_test.yy",},"order":0,},
+    {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":1,},
+    {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":4,},
+    {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":3,},
+    {"id":{"name":"scrMagicCollisionsToolsMap","path":"scripts/scrMagicCollisionsToolsMap/scrMagicCollisionsToolsMap.yy",},"order":0,},
+  ],
+  "Options": [
+    {"name":"Amazon Fire","path":"options/amazonfire/options_amazonfire.yy",},
+    {"name":"Android","path":"options/android/options_android.yy",},
+    {"name":"iOS","path":"options/ios/options_ios.yy",},
+    {"name":"Linux","path":"options/linux/options_linux.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
+    {"name":"Main","path":"options/main/options_main.yy",},
+    {"name":"tvOS","path":"options/tvos/options_tvos.yy",},
+    {"name":"Windows","path":"options/windows/options_windows.yy",},
+  ],
+  "isDnDProject": false,
+  "isEcma": false,
+  "tutorialPath": "",
+  "configs": {
+    "name": "Default",
+    "children": [],
+  },
+  "RoomOrderNodes": [
+    {"roomId":{"name":"room_test","path":"rooms/room_test/room_test.yy",},},
+  ],
+  "Folders": [
+    {"folderPath":"folders/MagicCollisionsTools.yy","order":0,"resourceVersion":"1.0","name":"MagicCollisionsTools","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/tests.yy","order":1,"resourceVersion":"1.0","name":"tests","tags":[],"resourceType":"GMFolder",},
+  ],
+  "AudioGroups": [
+    {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
+  ],
+  "TextureGroups": [
+    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"Default","resourceType":"GMTextureGroup",},
+  ],
+  "IncludedFiles": [],
+  "MetaData": {
+    "IDEVersion": "2.3.3.574",
+  },
+  "resourceVersion": "1.4",
+  "name": "CollisionsTools",
+  "tags": [],
+  "resourceType": "GMProject",
+}

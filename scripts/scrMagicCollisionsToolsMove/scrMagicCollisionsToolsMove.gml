@@ -6,7 +6,7 @@
 	
 */
 
-function magicCollsMove_single(_x, _y, _speed, _accuracy, _check, _check_data) {
+function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 	
 	//
 	magicCollsMap[? "speed"] = 0;
@@ -14,7 +14,7 @@ function magicCollsMove_single(_x, _y, _speed, _accuracy, _check, _check_data) {
 	//
 	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO) {
 	
-		if (_check(0, _x, _y, _check_data)) return true;
+		if (_check(0, _check_data)) return true;
 	}
 	
 	//
@@ -28,19 +28,19 @@ function magicCollsMove_single(_x, _y, _speed, _accuracy, _check, _check_data) {
 		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _x, _y, _check_data)) return true;
+		if (_check(_math, _check_data)) return true;
 		magicCollsMap[? "speed"] = _math;
 	}
 	
 	//
-	if (_check(_speed, _x, _y, _check_data)) return true;
+	if (_check(_speed, _check_data)) return true;
 	magicCollsMap[? "speed"] = _speed;
 	
 	//
 	return false;
 }
 
-function magicCollsMove_double(_x, _y, _speed, _accuracy_micro, _accuracy_macro, _check, _check_data) {
+function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check, _check_data) {
 	
 	//
 	magicCollsMap[? "speed"] = 0;
@@ -48,7 +48,7 @@ function magicCollsMove_double(_x, _y, _speed, _accuracy_micro, _accuracy_macro,
 	//
 	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO) {
 	
-		if (_check(0, _x, _y, _check_data)) return true;
+		if (_check(0, _check_data)) return true;
 	}
 	
 	//
@@ -64,13 +64,13 @@ function magicCollsMove_double(_x, _y, _speed, _accuracy_micro, _accuracy_macro,
 		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _x, _y, _check_data)) {
+		if (_check(_math, _check_data)) {
 			
 			//
 			do {
 				_iter -= _accuracy_micro;
 				_math  = _iter * _sign;
-			} until (!_check(_math, _x, _y, _check_data));
+			} until (!_check(_math, _check_data));
 			
 			//
 			magicCollsMap[? "speed"] = _math;
@@ -89,12 +89,12 @@ function magicCollsMove_double(_x, _y, _speed, _accuracy_micro, _accuracy_macro,
 		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _x, _y, _check_data)) return true;
+		if (_check(_math, _check_data)) return true;
 		magicCollsMap[? "speed"] = _math;
 	}
 	
 	//
-	if (_check(_speed, _x, _y, _check_data)) return true;
+	if (_check(_speed, _check_data)) return true;
 	magicCollsMap[? "speed"] = _speed;
 	
 	//

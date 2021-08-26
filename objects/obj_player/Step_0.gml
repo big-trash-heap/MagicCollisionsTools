@@ -6,7 +6,7 @@ var _speed = (keyboard_check(vk_control) ? 8 : 0.1);
 	
 if (_key_x != 0) {
 	
-	magicCollsMove_double(x, y, _key_x * _speed, 0.1, 20, function(_speed) {
+	magicCollsMove_double(_key_x * _speed, 0.1, 20, function(_speed) {
 		
 		return place_meeting(x + _speed, y, obj_wall);
 	});
@@ -16,7 +16,7 @@ if (_key_x != 0) {
 
 if (_key_y != 0) {
 	
-	magicCollsMove_double(x, y, _key_y * _speed, 0.1, 20, function(_speed) {
+	magicCollsMove_double(_key_y * _speed, 0.1, 20, function(_speed) {
 		
 		return place_meeting(x, y + _speed, obj_wall);
 	});

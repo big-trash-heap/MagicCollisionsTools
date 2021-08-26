@@ -9,7 +9,7 @@
 function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 	
 	//
-	magicCollsMap[? "speed"] = 0;
+	magicCollsSpeed = 0;
 	
 	//
 	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO) {
@@ -19,6 +19,9 @@ function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 	
 	//
 	var _sign = sign(_speed);
+	if (_check(_sign, _check_data)) return true;
+	
+	//
 	var _math = floor(abs(_speed) / _accuracy);
 	var _iter = 0;
 	repeat _math {
@@ -29,12 +32,12 @@ function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 		
 		//
 		if (_check(_math, _check_data)) return true;
-		magicCollsMap[? "speed"] = _math;
+		magicCollsSpeed = _math;
 	}
 	
 	//
 	if (_check(_speed, _check_data)) return true;
-	magicCollsMap[? "speed"] = _speed;
+	magicCollsSpeed = _speed;
 	
 	//
 	return false;
@@ -43,7 +46,7 @@ function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check, _check_data) {
 	
 	//
-	magicCollsMap[? "speed"] = 0;
+	magicCollsSpeed = 0;
 	
 	//
 	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO) {
@@ -53,6 +56,9 @@ function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check,
 	
 	//
 	var _sign = sign(_speed);
+	if (_check(_sign, _check_data)) return true;
+	
+	//
 	var _abs  = abs(_speed);
 	var _div  = floor(_abs / _accuracy_macro);
 	var _math = 0;
@@ -73,13 +79,13 @@ function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check,
 			} until (!_check(_math, _check_data));
 			
 			//
-			magicCollsMap[? "speed"] = _math;
+			magicCollsSpeed = _math;
 			return true;
 		}
 	}
 	
 	//
-	magicCollsMap[? "speed"] = _math;
+	magicCollsSpeed = _math;
 	
 	//
 	repeat floor((_abs - _div * _accuracy_macro) / _accuracy_micro) {
@@ -90,12 +96,12 @@ function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check,
 		
 		//
 		if (_check(_math, _check_data)) return true;
-		magicCollsMap[? "speed"] = _math;
+		magicCollsSpeed = _math;
 	}
 	
 	//
 	if (_check(_speed, _check_data)) return true;
-	magicCollsMap[? "speed"] = _speed;
+	magicCollsSpeed = _speed;
 	
 	//
 	return false;

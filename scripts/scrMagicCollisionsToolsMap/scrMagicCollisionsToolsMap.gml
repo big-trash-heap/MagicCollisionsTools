@@ -1,3 +1,3 @@
 
-globalvar magicCollsMap;
-magicCollsMap = ds_map_create();
+globalvar magicCollsSpeed;
+magicCollsSpeed = 0;

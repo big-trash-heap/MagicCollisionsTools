@@ -1,7 +1,6 @@
 {
   "resources": [
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":2,},
-    {"id":{"name":"scrMagicCollisionsToolsRect","path":"scripts/scrMagicCollisionsToolsRect/scrMagicCollisionsToolsRect.yy",},"order":2,},
     {"id":{"name":"scrMagicCollisionsToolsMove","path":"scripts/scrMagicCollisionsToolsMove/scrMagicCollisionsToolsMove.yy",},"order":1,},
     {"id":{"name":"room_test","path":"rooms/room_test/room_test.yy",},"order":0,},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":1,},

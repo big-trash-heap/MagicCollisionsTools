@@ -9,14 +9,14 @@ show_debug_message(_key_y);
 
 if (_key_x != 0) {
 	
-	magicCollsMove_double(_key_x * _speed, 0.1, 20, self.check_x);
+	magicCollsMove_double(_key_x * _speed, 2, 30, self.check_x);
 	
 	x += magicCollsSpeed;
 }
 
 if (_key_y != 0) {
 	
-	magicCollsMove_double(_key_y * _speed, 0.1, 20, self.check_y);
+	magicCollsMove_double(_key_y * _speed, 2, 30, self.check_y);
 	
 	y += magicCollsSpeed;
 }

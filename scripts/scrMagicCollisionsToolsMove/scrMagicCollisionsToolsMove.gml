@@ -1,6 +1,7 @@
 
 //
 #macro PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO false
+#macro PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKSIGN true
 
 /*
 	
@@ -19,7 +20,14 @@ function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 	
 	//
 	var _sign = sign(_speed);
-	if (_check(_sign, _check_data)) return true;
+	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKSIGN) {
+		
+		if (_check(_sign, _check_data)) return true;
+	}
+	else {
+		
+		if (_check(_sign * _accuracy, _check_data)) return true;
+	}
 	
 	//
 	var _math = floor(abs(_speed) / _accuracy);
@@ -56,7 +64,14 @@ function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check,
 	
 	//
 	var _sign = sign(_speed);
-	if (_check(_sign, _check_data)) return true;
+	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKSIGN) {
+		
+		if (_check(_sign, _check_data)) return true;
+	}
+	else {
+		
+		if (_check(_sign * _accuracy_micro, _check_data)) return true;
+	}
 	
 	//
 	var _abs  = abs(_speed);

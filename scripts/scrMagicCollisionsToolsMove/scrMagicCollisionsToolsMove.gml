@@ -1,7 +1,7 @@
 
 //
-#macro PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO false
-#macro PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKSIGN true
+#macro MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKZERO false
+#macro MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKSIGN true
 
 /*
 	
@@ -13,14 +13,14 @@ function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 	magicCollsSpeed = 0;
 	
 	//
-	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO) {
+	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKZERO) {
 	
 		if (_check(0, _check_data)) return true;
 	}
 	
 	//
 	var _sign = sign(_speed);
-	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKSIGN) {
+	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKSIGN) {
 		
 		if (_check(_sign, _check_data)) return true;
 	}
@@ -57,14 +57,14 @@ function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check,
 	magicCollsSpeed = 0;
 	
 	//
-	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKZERO) {
+	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKZERO) {
 	
 		if (_check(0, _check_data)) return true;
 	}
 	
 	//
 	var _sign = sign(_speed);
-	if (PREPROCESSOR_MAGIC_COLLISION_MOVE_CHECKSIGN) {
+	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKSIGN) {
 		
 		if (_check(_sign, _check_data)) return true;
 	}

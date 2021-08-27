@@ -1,16 +1,27 @@
 
-#macro MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETID		false
+
+//
+#macro MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID	false
+
+//
 #macro MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_FIXANGLE	true
 
-if (MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETID) {
+
+#region PREPROCESSOR
+
+if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
 	
 	global.magCollsSampleId = noone;
 }
 
-function magCollsJumpLine(_x1, _y1, _x2, _y2, _obj, _prec=false, _notme=false, _accuracy=1) {
-	static _space = {_x1: 0, _y1: 0, _dir: 0, _prec: false, _notme: false};
-	static _check = method(
-		_space,
+#endregion
+
+
+#region line
+
+function magCollsJumpLine(_x1, _y1, _x2, _y2, _obj, _prec=false, _notme=false, _accuracy=MAGIC_COLLISION_MOVE_DEFAULT_ACCURACY) {
+	
+	static _check = method(global.__magCollsJumpSampleObject,
 		function(_speed, _object) {
 			
 			_object = collision_line(
@@ -20,25 +31,25 @@ function magCollsJumpLine(_x1, _y1, _x2, _y2, _obj, _prec=false, _notme=false, _
 				_object, self._prec, self._notme
 			);
 			
-			if (MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETID) {
+			if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
 				
 				if (_object) global.magCollsSampleId = _object;
 			}
 			return _object;
 		});
 		
-	if (MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETID) {
+	if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
 	
 		global.magCollsSampleId = noone;
 	}
 	
 	global.magCollsDir = point_direction(_x1, _y1, _x2, _y2);
 	
-	_space._x1    = _x1;
-	_space._y1    = _y1;
-	_space._dir   = global.magCollsDir;
-	_space._prec  = _prec;
-	_space._notme = _notme;
+	global.__magCollsJumpSampleObject._x1    = _x1;
+	global.__magCollsJumpSampleObject._y1    = _y1;
+	global.__magCollsJumpSampleObject._dir   = global.magCollsDir;
+	global.__magCollsJumpSampleObject._prec  = _prec;
+	global.__magCollsJumpSampleObject._notme = _notme;
 	
 	_x2 = point_distance(_x1, _y1, _x2, _y2);
 	_y2 = magCollsJump(_x2, _check, _obj, _accuracy);
@@ -54,7 +65,7 @@ function magCollsJumpLine(_x1, _y1, _x2, _y2, _obj, _prec=false, _notme=false, _
 				
 				global.magCollsDis = _x2;
 				
-				if (MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETID) {
+				if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
 				
 					global.magCollsSampleId = noone;
 				}
@@ -66,3 +77,121 @@ function magCollsJumpLine(_x1, _y1, _x2, _y2, _obj, _prec=false, _notme=false, _
 	
 	return _y2;
 }
+
+#endregion
+
+#region rectangle
+
+function magCollsJumpRectW(_x1, _y1, _y2, _width, _obj, _prec=false, _notme=false, _accuracy=MAGIC_COLLISION_MOVE_DEFAULT_ACCURACY) {
+	
+	static _check_xp = method(global.__magCollsJumpSampleObject,
+		function(_speed, _object) {
+			
+			_object = collision_rectangle(
+				self._x1, self._y1,
+				self._x1 + _speed, self._z,
+				_object, self._prec, self._notme
+			);
+			
+			if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
+				
+				if (_object) global.magCollsSampleId = _object;
+			}
+			return _object;
+		});
+	
+	static _check_xm = method(global.__magCollsJumpSampleObject,
+		function(_speed, _object) {
+			
+			_object = collision_rectangle(
+				self._x1 - _speed, self._y1,
+				self._x1, self._z,
+				_object, self._prec, self._notme
+			);
+			
+			if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
+				
+				if (_object) global.magCollsSampleId = _object;
+			}
+			return _object;
+		});
+	
+	if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
+	
+		global.magCollsSampleId = noone;
+	}
+	
+	global.__magCollsJumpSampleObject._x1    = _x1;
+	global.__magCollsJumpSampleObject._y1    = _y1;
+	global.__magCollsJumpSampleObject._z     = _y2;
+	global.__magCollsJumpSampleObject._prec  = _prec;
+	global.__magCollsJumpSampleObject._notme = _notme;
+	
+	_x1 = sign(_width);
+	_y1 = magCollsJump(abs(_width), (_x1 ? _check_xp : _check_xm), _obj, _accuracy);
+	
+	global.magCollsDis *= _x1;
+	return _y1;
+}
+
+function magCollsJumpRectH(_x1, _y1, _x2, _height, _obj, _prec=false, _notme=false, _accuracy=MAGIC_COLLISION_MOVE_DEFAULT_ACCURACY) {
+	
+	static _check_yp = method(global.__magCollsJumpSampleObject,
+		function(_speed, _object) {
+			
+			_object = collision_rectangle(
+				self._x1, self._y1,
+				self._z, self._y1 + _speed,
+				_object, self._prec, self._notme
+			);
+			
+			if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
+				
+				if (_object) global.magCollsSampleId = _object;
+			}
+			return _object;
+		});
+	
+	static _check_pm = method(global.__magCollsJumpSampleObject,
+		function(_speed, _object) {
+			
+			_object = collision_rectangle(
+				self._x1, self._y1 - _speed,
+				self._z, self._y1,
+				_object, self._prec, self._notme
+			);
+			
+			if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
+				
+				if (_object) global.magCollsSampleId = _object;
+			}
+			return _object;
+		});
+	
+	if (MAGIC_COLLISION_JUMPSAMPLE_PREPROCESSOR_GETID) {
+	
+		global.magCollsSampleId = noone;
+	}
+	
+	global.__magCollsJumpSampleObject._x1    = _x1;
+	global.__magCollsJumpSampleObject._y1    = _y1;
+	global.__magCollsJumpSampleObject._z     = _x2;
+	global.__magCollsJumpSampleObject._prec  = _prec;
+	global.__magCollsJumpSampleObject._notme = _notme;
+	
+	_x1 = sign(_height);
+	_y1 = magCollsJump(abs(_height), (_x1 ? _check_yp : _check_pm), _obj, _accuracy);
+	
+	global.magCollsDis *= _x1;
+	return _y1;
+}
+
+#endregion
+
+
+#region __object
+
+global.__magCollsJumpSampleObject = {};
+
+#endregion
+

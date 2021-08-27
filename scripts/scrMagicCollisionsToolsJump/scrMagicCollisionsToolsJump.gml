@@ -1,5 +1,7 @@
 
-function magCollsJump(_speed, _check, _data, _accuracy=1) {
+#macro MAGIC_COLLISION_MOVE_DEFAULT_ACCURACY	0.8
+
+function magCollsJump(_speed, _check, _data, _accuracy=MAGIC_COLLISION_MOVE_DEFAULT_ACCURACY) {
 	
 	if (_check(_speed, _data)) {
 		

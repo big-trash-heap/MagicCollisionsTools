@@ -1,32 +1,35 @@
 
 //
-#macro MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKZERO false
-#macro MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKSIGN true
+#macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKZERO			false
+#macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN			true
+#macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY false
 
 /*
 	
 */
 
-function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
+function magCollsMove_single(_speed, _accuracy, _check, _data) {
 	
 	//
-	magicCollsSpeed = 0;
+	global.magCollsDis = 0;
 	
 	//
-	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKZERO) {
+	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKZERO) {
 	
-		if (_check(0, _check_data)) return true;
+		if (_check(0, _data)) return true;
 	}
 	
 	//
 	var _sign = sign(_speed);
-	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKSIGN) {
+	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN) {
+		if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY) {
 		
-		if (_check(_sign, _check_data)) return true;
-	}
-	else {
-		
-		if (_check(_sign * _accuracy, _check_data)) return true;
+			if (_check(_sign * _accuracy, _data)) return true;
+		}
+		else {
+			
+			if (_check(_sign, _data)) return true;
+		}
 	}
 	
 	//
@@ -39,84 +42,86 @@ function magicCollsMove_single(_speed, _accuracy, _check, _check_data) {
 		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _check_data)) return true;
-		magicCollsSpeed = _math;
+		if (_check(_math, _data)) return true;
+		global.magCollsDis = _math;
 	}
 	
 	//
-	if (_check(_speed, _check_data)) return true;
-	magicCollsSpeed = _speed;
+	if (_check(_speed, _data)) return true;
+	global.magCollsDis = _speed;
 	
 	//
 	return false;
 }
 
-function magicCollsMove_double(_speed, _accuracy_micro, _accuracy_macro, _check, _check_data) {
+function magCollsMove_double(_speed, _accuracyMicro, _accuracyMacro, _check, _data) {
 	
 	//
-	magicCollsSpeed = 0;
+	global.magCollsDis = 0;
 	
 	//
-	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKZERO) {
+	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKZERO) {
 	
-		if (_check(0, _check_data)) return true;
+		if (_check(0, _data)) return true;
 	}
 	
 	//
 	var _sign = sign(_speed);
-	if (MAGIC_PREPROCESSOR_COLLISION_MOVE_CHECKSIGN) {
+	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN) {
+		if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY) {
 		
-		if (_check(_sign, _check_data)) return true;
-	}
-	else {
-		
-		if (_check(_sign * _accuracy_micro, _check_data)) return true;
+			if (_check(_sign * _accuracyMicro, _data)) return true;
+		}
+		else {
+			
+			if (_check(_sign, _data)) return true;
+		}
 	}
 	
 	//
 	var _abs  = abs(_speed);
-	var _div  = floor(_abs / _accuracy_macro);
+	var _div  = floor(_abs / _accuracyMacro);
 	var _math = 0;
 	var _iter = 0;
 	repeat _div {
 		
 		//
-		_iter += _accuracy_macro;
+		_iter += _accuracyMacro;
 		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _check_data)) {
+		if (_check(_math, _data)) {
 			
 			//
 			do {
-				_iter -= _accuracy_micro;
+				_iter -= _accuracyMicro;
 				_math  = _iter * _sign;
-			} until (!_check(_math, _check_data));
+			} until (!_check(_math, _data));
 			
 			//
-			magicCollsSpeed = _math;
+			global.magCollsDis = _math;
 			return true;
 		}
 	}
 	
 	//
-	magicCollsSpeed = _math;
+	global.magCollsDis = _math;
 	
 	//
-	repeat floor((_abs - _div * _accuracy_macro) / _accuracy_micro) {
+	repeat floor((_abs - _div * _accuracyMacro) / _accuracyMicro) {
 		
 		//
-		_iter += _accuracy_micro;
+		_iter += _accuracyMicro;
 		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _check_data)) return true;
-		magicCollsSpeed = _math;
+		if (_check(_math, _data)) return true;
+		global.magCollsDis = _math;
 	}
 	
 	//
-	if (_check(_speed, _check_data)) return true;
-	magicCollsSpeed = _speed;
+	if (_check(_speed, _data)) return true;
+	global.magCollsDis = _speed;
 	
 	//
 	return false;

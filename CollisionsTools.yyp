@@ -1,12 +1,15 @@
 {
   "resources": [
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":2,},
+    {"id":{"name":"test_preprs","path":"scripts/test_preprs/test_preprs.yy",},"order":5,},
     {"id":{"name":"scrMagicCollisionsToolsMove","path":"scripts/scrMagicCollisionsToolsMove/scrMagicCollisionsToolsMove.yy",},"order":1,},
+    {"id":{"name":"scrMagicCollisionsToolsJumpSample","path":"scripts/scrMagicCollisionsToolsJumpSample/scrMagicCollisionsToolsJumpSample.yy",},"order":0,},
     {"id":{"name":"room_test","path":"rooms/room_test/room_test.yy",},"order":0,},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":1,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":4,},
+    {"id":{"name":"scrMagicCollisionsToolsJump","path":"scripts/scrMagicCollisionsToolsJump/scrMagicCollisionsToolsJump.yy",},"order":2,},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":3,},
-    {"id":{"name":"scrMagicCollisionsToolsMap","path":"scripts/scrMagicCollisionsToolsMap/scrMagicCollisionsToolsMap.yy",},"order":0,},
+    {"id":{"name":"scrMagicCollisionsToolsGlobal","path":"scripts/scrMagicCollisionsToolsGlobal/scrMagicCollisionsToolsGlobal.yy",},"order":0,},
   ],
   "Options": [
     {"name":"Amazon Fire","path":"options/amazonfire/options_amazonfire.yy",},
@@ -31,6 +34,7 @@
   "Folders": [
     {"folderPath":"folders/MagicCollisionsTools.yy","order":0,"resourceVersion":"1.0","name":"MagicCollisionsTools","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/tests.yy","order":1,"resourceVersion":"1.0","name":"tests","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/MagicCollisionsTools/Sample.yy","order":4,"resourceVersion":"1.0","name":"Sample","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

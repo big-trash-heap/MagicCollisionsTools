@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Sample",
-    "path": "folders/MagicCollisionsTools/Sample.yy",
+    "name": "sample",
+    "path": "folders/MagicCollisionsTools/sample.yy",
   },
   "resourceVersion": "1.0",
   "name": "scrMagicCollisionsToolsJumpSample",

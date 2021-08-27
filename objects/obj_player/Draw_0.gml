@@ -20,3 +20,6 @@ draw_rectangle(x, y, x + global.magCollsDis, y + 64, true);
 
 magCollsJumpRectH(x, y, x + 64, 1024 * sign(mouse_y - y), obj_wall);
 draw_rectangle(x, y, x + 64, y + global.magCollsDis, true);
+
+magCollsJumpCircle(x, y, 512, obj_wall);
+draw_circle(x, y, global.magCollsDis, true);

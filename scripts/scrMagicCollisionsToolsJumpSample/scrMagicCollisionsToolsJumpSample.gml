@@ -14,11 +14,11 @@
 														// проверка ошибочных ситуаций
 														// из-за погрешности collision_line, иногда результат magCollsJumpLine оказывается неверным
 														// эта настройка может решить эту проблему, но зачастую это совсем не нужно
-#macro MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_FIXANGLE	true
+#macro MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_FIXANGLE	false
 														
 														// сохранения угла
 														// записывается в global.magCollsDir
-#macro MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETANGLE	true
+#macro MAGIC_COLLISION_JUMPLINE_PREPROCESSOR_GETANGLE	false
 
 
 #region PREPROCESSOR

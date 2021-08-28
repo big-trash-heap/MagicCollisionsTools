@@ -8,12 +8,12 @@ if (_key_x != 0) {
 	
 	magCollsMove_double(_key_x * _speed, 1, 30, self.check_x);
 	
-	x += global.magCollsDis;
+	x += global.magCollsDist;
 }
 
 if (_key_y != 0) {
 	
 	magCollsMove_double(_key_y * _speed, 1, 30, self.check_y);
 	
-	y += global.magCollsDis;
+	y += global.magCollsDist;
 }

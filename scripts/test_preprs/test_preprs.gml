@@ -15,7 +15,9 @@ if (false) {
 			//}
 		
 			if (!false) {
-				_math = _math * 24 / _math * power(_math, 4);
+				//_math = _math * 24 / _math * power(_math, 4);
+				if _math {};
+				//_math = -_math;
 			}
 		
 			//if (false) {

@@ -40,8 +40,8 @@ function magCollsMove_single(_speed, _accuracy, _check, _data) {
 	}
 	
 	//
-	var _sign = sign(_speed);
-	_accuracy *= _sign;
+	if (_speed < 0)
+		_accuracy = -_accuracy;
 	
 	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN) {
 		if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY) {
@@ -50,7 +50,7 @@ function magCollsMove_single(_speed, _accuracy, _check, _data) {
 		}
 		else {
 			
-			if (_check(_sign, _data)) return true;
+			if (_check(sign(_speed), _data)) return true;
 		}
 	}
 	
@@ -95,9 +95,11 @@ function magCollsMove_double(_speed, _accuracyMicro, _accuracyMacro, _check, _da
 	}
 	
 	//
-	var _sign = sign(_speed);
-	_accuracyMicro *= _sign;
-	_accuracyMacro *= _sign;
+	if (_speed < 0) {
+		
+		_accuracyMicro = -_accuracyMicro;
+		_accuracyMacro = -_accuracyMacro;
+	}
 	
 	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN) {
 		if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY) {
@@ -106,7 +108,7 @@ function magCollsMove_double(_speed, _accuracyMicro, _accuracyMacro, _check, _da
 		}
 		else {
 			
-			if (_check(_sign, _data)) return true;
+			if (_check(sign(_speed), _data)) return true;
 		}
 	}
 	

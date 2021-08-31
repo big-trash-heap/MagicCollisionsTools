@@ -70,7 +70,7 @@ case state.tds1:
 		var _speed = (keyboard_check(vk_control) ? 0.1 : 4);
 		if (!self.check_v(1)) {
 			
-			magCollsMove_single(_speed, 4, self.check_v);
+			magCollsMove_single(_speed, 1, self.check_v);
 			self.x += lengthdir_x(global.magCollsDist, self.press_dir);
 			self.y += lengthdir_y(global.magCollsDist, self.press_dir);
 		}

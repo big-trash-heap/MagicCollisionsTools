@@ -10,7 +10,7 @@
 #macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKZERO			false
 															
 															// первоначальная проверка столкновение, со скоростью равным знаку "скорости"
-#macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN			true
+#macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN			false
 															// использовать ли для этой проверки указанную точность
 #macro MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY false
 

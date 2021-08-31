@@ -13,7 +13,7 @@
 
 //
 enum state { tds0, tds1, plt0, plt1 } ;
-self.state = state.plt1;
+self.state = -1;
 
 #region tds0/plt0
 

@@ -2,6 +2,10 @@
 draw_set_color(c_yellow);
 
 switch (self.state) {
+case -1:
+	draw_self();
+	draw_text(0, 0, "test");
+	break;
 case state.tds0:
 	draw_self();
 	draw_text(0, 0, "TDS 0");

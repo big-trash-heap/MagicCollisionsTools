@@ -41,10 +41,12 @@ function magCollsMove_single(_speed, _accuracy, _check, _data) {
 	
 	//
 	var _sign = sign(_speed);
+	_accuracy *= _sign;
+	
 	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN) {
 		if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY) {
 		
-			if (_check(_sign * _accuracy, _data)) return true;
+			if (_check(_accuracy, _data)) return true;
 		}
 		else {
 			
@@ -53,24 +55,28 @@ function magCollsMove_single(_speed, _accuracy, _check, _data) {
 	}
 	
 	//
-	var _math = floor(abs(_speed) / _accuracy);
-	var _iter = 0;
-	repeat _math {
+	var _iter = 0;	
+	repeat floor(_speed / _accuracy) {
 		
 		//
 		_iter += _accuracy;
-		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _data)) return true;
-		global.magCollsDist = _math;
+		if (_check(_iter, _data)) {
+			
+			global.magCollsDist = _iter - _accuracy;
+			return true;
+		}
 	}
 	
 	//
-	if (_check(_speed, _data)) return true;
-	global.magCollsDist = _speed;
+	if (_check(_speed, _data)) {
+		
+		global.magCollsDist = _iter;
+		return true;
+	}
 	
-	//
+	global.magCollsDist = _speed;
 	return false;
 }
 
@@ -90,10 +96,13 @@ function magCollsMove_double(_speed, _accuracyMicro, _accuracyMacro, _check, _da
 	
 	//
 	var _sign = sign(_speed);
+	_accuracyMicro *= _sign;
+	_accuracyMacro *= _sign;
+	
 	if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN) {
 		if (MAGIC_COLLISION_MOVE_PREPROCESSOR_CHECKSIGN_ACCURACY) {
 		
-			if (_check(_sign * _accuracyMicro, _data)) return true;
+			if (_check(_accuracyMicro, _data)) return true;
 		}
 		else {
 			
@@ -102,51 +111,52 @@ function magCollsMove_double(_speed, _accuracyMicro, _accuracyMacro, _check, _da
 	}
 	
 	//
-	var _abs  = abs(_speed);
-	var _div  = floor(_abs / _accuracyMacro);
-	var _math = 0;
+	var _div  = floor(_speed / _accuracyMacro);
 	var _iter = 0;
 	repeat _div {
 		
 		//
 		_iter += _accuracyMacro;
-		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _data)) {
+		if (_check(_iter, _data)) {
 			
 			//
 			do {
 				_iter -= _accuracyMicro;
-				_math  = _iter * _sign;
-			} until (!_check(_math, _data));
+			} until (!_check(_iter, _data));
 			
 			//
-			global.magCollsDist = _math;
+			global.magCollsDist = _iter;
 			return true;
 		}
 	}
 	
 	//
-	global.magCollsDist = _math;
+	global.magCollsDist = _iter;
 	
 	//
-	repeat floor((_abs - _div * _accuracyMacro) / _accuracyMicro) {
+	repeat floor((_speed - _div * _accuracyMacro) / _accuracyMicro) {
 		
 		//
 		_iter += _accuracyMicro;
-		_math  = _iter * _sign;
 		
 		//
-		if (_check(_math, _data)) return true;
-		global.magCollsDist = _math;
+		if (_check(_iter, _data)) {
+			
+			global.magCollsDist = _iter - _accuracyMicro;
+			return true;
+		}
 	}
 	
 	//
-	if (_check(_speed, _data)) return true;
-	global.magCollsDist = _speed;
+	if (_check(_speed, _data)) {
+		
+		global.magCollsDist = _iter;
+		return true;
+	}
 	
-	//
+	global.magCollsDist = _speed;
 	return false;
 }
 

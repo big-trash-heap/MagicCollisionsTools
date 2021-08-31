@@ -11,7 +11,27 @@ if (keyboard_check(ord("3")))
 if (keyboard_check(ord("4")))
 	self.state = state.plt1;
 
+if (keyboard_check(ord("5")))
+	self.state = -1;
+
 switch (self.state) {
+case -1:
+	var _key_x = keyboard_check(ord("D")) - keyboard_check(ord("A"));
+	var _key_y = keyboard_check(ord("S")) - keyboard_check(ord("W"));
+	var _speed = (keyboard_check(vk_control) ? 0.1 : 10);
+	
+	if (_key_x != 0) {
+	
+		magCollsMove_double(_key_x * _speed, 1, 4, self.check_x);
+		self.x += global.magCollsDist;
+	}
+	
+	if (_key_y != 0) {
+	
+		magCollsMove_double(_key_y * _speed, 1, 4, self.check_y);
+		self.y += global.magCollsDist;
+	}
+	break;
 case state.tds0:
 	var _key_x = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 	var _key_y = keyboard_check(ord("S")) - keyboard_check(ord("W"));

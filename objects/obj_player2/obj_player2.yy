@@ -22,17 +22,16 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "test1",
-    "path": "folders/tests/test1.yy",
+    "name": "test2",
+    "path": "folders/tests/test2.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_player",
+  "name": "obj_player2",
   "tags": [],
   "resourceType": "GMObject",
 }

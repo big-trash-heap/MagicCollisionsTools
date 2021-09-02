@@ -60,8 +60,8 @@
     "PhysicsWorldPixToMetres": 0.1,
   },
   "parent": {
-    "name": "tests",
-    "path": "folders/tests.yy",
+    "name": "test1",
+    "path": "folders/tests/test1.yy",
   },
   "resourceVersion": "1.0",
   "name": "room_test",

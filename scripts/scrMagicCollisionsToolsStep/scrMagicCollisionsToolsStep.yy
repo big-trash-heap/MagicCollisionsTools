@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "MagicCollisionsTools",
-    "path": "folders/MagicCollisionsTools.yy",
+    "name": "extend",
+    "path": "folders/MagicCollisionsTools/extend.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Script6",
+  "name": "scrMagicCollisionsToolsStep",
   "tags": [],
   "resourceType": "GMScript",
 }

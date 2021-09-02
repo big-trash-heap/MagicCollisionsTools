@@ -1,8 +1,11 @@
 draw_self();
 
-magCollsStepH(x, y, obj_wall, 256);
+if (magCollsStepH(x, y, obj_wall, -256, function(){return true}))
+	draw_set_color(c_yellow);
+else
+	draw_set_color(c_lime);
 
-draw_sprite(sprite_index, 0, x, y + global.magCollsDist);
+draw_sprite_ext(sprite_index, 0, x, y + global.magCollsDist, 1, 1, 0, c_red, 1);
 
 draw_text(0, 0, global.magCollsDist);
 

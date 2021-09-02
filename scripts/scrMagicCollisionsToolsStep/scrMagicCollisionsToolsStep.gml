@@ -1,5 +1,5 @@
 
-function magCollsStepW(_x, _y, _object, _speed) {
+function magCollsStepW(_x, _y, _object, _speed, _check, _data) {
 	
 	static _find_left = function(_left, _inst) {
 		
@@ -48,27 +48,43 @@ function magCollsStepW(_x, _y, _object, _speed) {
 	
 	if (_size) {
 		
-		do {
-			_find_v = _find_f(_find_v, global.__magCollsStepList[| --_size]);
-		} until (_size == 0);
-		
-		if (_speed < 0) {
+		if (!is_undefined(_check)) {
 			
-			global.magCollsDist = (_find_v - self.bbox_left + 1);
+			do {
+				_iter = global.__magCollsStepList[| --_size];
+				if (_check(_iter, _data)) _find_v = _find_f(_find_v, _iter);
+			} until (_size == 0);
+			
+			if (!is_infinity(_find_v)) {
+				
+				if (_speed < 0) 
+					global.magCollsDist = (_find_v - self.bbox_left + 1);
+				else
+					global.magCollsDist = (_find_v - self.bbox_right - 1);
+				
+				return true;
+			}
 		}
 		else {
 			
-			global.magCollsDist = (_find_v - self.bbox_right - 1);
+			do {
+				_find_v = _find_f(_find_v, global.__magCollsStepList[| --_size]);
+			} until (_size == 0);
+			
+			if (_speed < 0) 
+				global.magCollsDist = (_find_v - self.bbox_left + 1);
+			else
+				global.magCollsDist = (_find_v - self.bbox_right - 1);
+			
+			return true;
 		}
-		
-		return true;
 	}
 	
 	global.magCollsDist = _speed;
 	return false;
 }
 
-function magCollsStepH(_x, _y, _object, _speed) {
+function magCollsStepH(_x, _y, _object, _speed, _check, _data) {
 	
 	static _find_top = function(_top, _inst) {
 		
@@ -94,6 +110,8 @@ function magCollsStepH(_x, _y, _object, _speed) {
 		_find_v = infinity;
 	}
 	
+	ds_list_clear(global.__magCollsStepList);
+	
 	var _size = 0;
 	var _div = floor(_speed / _step);
 	if (_div) {
@@ -115,22 +133,36 @@ function magCollsStepH(_x, _y, _object, _speed) {
 	
 	if (_size) {
 		
-		do {
-			_find_v = _find_f(_find_v, global.__magCollsStepList[| --_size]);
-		} until (_size == 0);
-		
-		ds_list_clear(global.__magCollsStepList);
-		
-		if (_speed < 0) {
+		if (!is_undefined(_check)) {
 			
-			global.magCollsDist = (_find_v - self.bbox_top + 1);
+			do {
+				_iter = global.__magCollsStepList[| --_size];
+				if (_check(_iter, _data)) _find_v = _find_f(_find_v, _iter);
+			} until (_size == 0);
+			
+			if (!is_infinity(_find_v)) {
+				
+				if (_speed < 0) 
+					global.magCollsDist = (_find_v - self.bbox_top + 1);
+				else
+					global.magCollsDist = (_find_v - self.bbox_bottom - 1);
+				
+				return true;
+			}
 		}
 		else {
 			
-			global.magCollsDist = (_find_v - self.bbox_bottom - 1);
+			do {
+				_find_v = _find_f(_find_v, global.__magCollsStepList[| --_size]);
+			} until (_size == 0);
+			
+			if (_speed < 0) 
+				global.magCollsDist = (_find_v - self.bbox_top + 1);
+			else
+				global.magCollsDist = (_find_v - self.bbox_bottom - 1);
+			
+			return true;
 		}
-		
-		return true;
 	}
 	
 	global.magCollsDist = _speed;

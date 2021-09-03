@@ -11,48 +11,43 @@ function magCollsStepW(_x, _y, _object, _speed, _check, _data) {
 		return max(_right, _inst.bbox_right);
 	}
 	
-	var _step, _find_f, _find_v;
+	ds_list_clear(global.__magCollsStepList);
+	
+	var _size;
 	if (_speed < 0) {
 		
-		_step   = -self.sprite_width;
-		_find_f = _find_right;
-		_find_v = -infinity;
+		_size = collision_rectangle_list(
+			self.bbox_left + _speed, self.bbox_top, 
+			self.bbox_right, self.bbox_bottom, 
+			_object, false, true, global.__magCollsStepList, false);
 	}
 	else {
 		
-		_step   = self.sprite_width;
-		_find_f = _find_left;
-		_find_v = infinity;
-	}
-	
-	ds_list_clear(global.__magCollsStepList);
-	
-	var _size = 0;
-	var _div = floor(_speed / _step);
-	if (_div) {
-		
-		var _iter = _step;
-		do {
-			
-			_size = instance_place_list(_x + _iter, _y, _object, global.__magCollsStepList, false);
-			if (_size) break;
-			
-			_iter += _step;
-		} until (--_div == 0);
-	}
-	
-	if (_size == 0) {
-		
-		_size = instance_place_list(_x + _speed, _y, _object, global.__magCollsStepList, false);
+		_size = collision_rectangle_list(
+			self.bbox_left, self.bbox_top, 
+			self.bbox_right + _speed, self.bbox_bottom, 
+			_object, false, true, global.__magCollsStepList, false);
 	}
 	
 	if (_size) {
 		
+		var _find_f, _find_v, _inst;
+		if (_speed < 0) {
+			
+			_find_f = _find_right;
+			_find_v = -infinity;
+		}
+		else {
+			
+			_find_f = _find_left;
+			_find_v = infinity;
+		}
+		
 		if (!is_undefined(_check)) {
 			
 			do {
-				_iter = global.__magCollsStepList[| --_size];
-				if (_check(_iter, _data)) _find_v = _find_f(_find_v, _iter);
+				_inst = global.__magCollsStepList[| --_size];
+				if (_check(_inst, _data)) _find_v = _find_f(_find_v, _inst);
 			} until (_size == 0);
 			
 			if (!is_infinity(_find_v)) {
@@ -96,48 +91,43 @@ function magCollsStepH(_x, _y, _object, _speed, _check, _data) {
 		return max(_bottom, _inst.bbox_bottom);
 	}
 	
-	var _step, _find_f, _find_v;
+	ds_list_clear(global.__magCollsStepList);
+	
+	var _size;
 	if (_speed < 0) {
 		
-		_step   = -self.sprite_height;
-		_find_f = _find_bottom;
-		_find_v = -infinity;
+		_size = collision_rectangle_list(
+			self.bbox_left, self.bbox_top + _speed, 
+			self.bbox_right, self.bbox_bottom, 
+			_object, false, true, global.__magCollsStepList, false);
 	}
 	else {
 		
-		_step   = self.sprite_height;
-		_find_f = _find_top;
-		_find_v = infinity;
-	}
-	
-	ds_list_clear(global.__magCollsStepList);
-	
-	var _size = 0;
-	var _div = floor(_speed / _step);
-	if (_div) {
-		
-		var _iter = _step;
-		do {
-			
-			_size = instance_place_list(_x, _y + _iter, _object, global.__magCollsStepList, false);
-			if (_size) break;
-			
-			_iter += _step;
-		} until (--_div == 0);
-	}
-	
-	if (_size == 0) {
-		
-		_size = instance_place_list(_x, _y + _speed, _object, global.__magCollsStepList, false);
+		_size = collision_rectangle_list(
+			self.bbox_left, self.bbox_top, 
+			self.bbox_right, self.bbox_bottom + _speed, 
+			_object, false, true, global.__magCollsStepList, false);
 	}
 	
 	if (_size) {
 		
+		var _find_f, _find_v, _inst;
+		if (_speed < 0) {
+			
+			_find_f = _find_bottom;
+			_find_v = -infinity;
+		}
+		else {
+			
+			_find_f = _find_top;
+			_find_v = infinity;
+		}
+		
 		if (!is_undefined(_check)) {
 			
 			do {
-				_iter = global.__magCollsStepList[| --_size];
-				if (_check(_iter, _data)) _find_v = _find_f(_find_v, _iter);
+				_inst = global.__magCollsStepList[| --_size];
+				if (_check(_inst, _data)) _find_v = _find_f(_find_v, _inst);
 			} until (_size == 0);
 			
 			if (!is_infinity(_find_v)) {

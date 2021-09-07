@@ -1,4 +1,7 @@
 
+// check = check(inst, data)
+
+/// @function		magCollsStepW(x, y, object, speed, [check], [data]);
 function magCollsStepW(_x, _y, _object, _speed, _check, _data) {
 	
 	static _find_left = function(_left, _inst) {
@@ -79,6 +82,7 @@ function magCollsStepW(_x, _y, _object, _speed, _check, _data) {
 	return false;
 }
 
+/// @function		magCollsStepH(x, y, object, speed, [check], [data]);
 function magCollsStepH(_x, _y, _object, _speed, _check, _data) {
 	
 	static _find_top = function(_top, _inst) {

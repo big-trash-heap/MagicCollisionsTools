@@ -135,9 +135,6 @@ function magCollsMove_double(_speed, _accuracyMicro, _accuracyMacro, _check, _da
 	}
 	
 	//
-	global.magCollsDist = _iter;
-	
-	//
 	repeat floor((_speed - _div * _accuracyMacro) / _accuracyMicro) {
 		
 		//

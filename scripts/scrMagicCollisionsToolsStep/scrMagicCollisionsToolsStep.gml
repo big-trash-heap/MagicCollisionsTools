@@ -163,8 +163,11 @@ function magCollsStepH(_x, _y, _object, _speed, _check, _data) {
 	return false;
 }
 
-#region 
+#region
 
-global.__magCollsStepList = ds_list_create();
+if (!variable_global_exists("__magCollsStepList")) {
+	
+	global.__magCollsStepList = ds_list_create();
+}
 
 #endregion

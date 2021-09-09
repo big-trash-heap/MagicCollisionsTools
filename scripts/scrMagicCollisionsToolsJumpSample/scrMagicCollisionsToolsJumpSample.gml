@@ -275,6 +275,7 @@ function magCollsJumpCircle(_x, _y, _rad, _obj, _prec=false, _notme=false, _accu
 
 #region __object
 
+// используется для передачи дополнительных параметров в функции
 if (!variable_global_exists("__magCollsSampleObject")) {
 	
 	global.__magCollsSampleObject = {};
